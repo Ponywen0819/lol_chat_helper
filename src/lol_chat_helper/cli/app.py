@@ -125,7 +125,7 @@ class ChatApp:
                     # 取得 AI 回應
                     print("🤖 AI: ", end="", flush=True)
                     try:
-                        output = self.app.invoke({"messages": [input_message]}, config)
+                        output = await self.app.ainvoke({"messages": [input_message]}, config)
                         ai_response = output["messages"][-1].content
                         print(ai_response)
                     except Exception as e:

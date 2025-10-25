@@ -1,10 +1,14 @@
 """Graph node functions for LOL Chat Helper."""
 
-from typing import Callable
+import time
+from typing import Callable, Any
 from langchain_core.messages import SystemMessage
 from langchain_core.language_models import BaseChatModel
 from langchain_core.tools import BaseTool
 from langgraph.graph import MessagesState
+from langgraph.prebuilt import ToolNode
+
+from lol_chat_helper.config import logger
 
 
 def create_agent_node(
@@ -69,6 +73,102 @@ def create_chat_node(
         return {"messages": response}
 
     return chat_node
+
+
+class LoggingToolNode(ToolNode):
+    """
+    ToolNode with debug logging capabilities.
+
+    Extends ToolNode to add detailed logging for:
+    - Tool calls before execution
+    - Execution time
+    - Tool results after execution
+    - Errors and exceptions
+
+    All logs use DEBUG level for development debugging.
+    """
+
+    def invoke(self, input: Any, config: Any = None, **kwargs: Any) -> Any:
+        """
+        Execute tool calls with detailed logging.
+
+        Args:
+            input: Input state containing messages with tool calls
+            config: Optional configuration
+            **kwargs: Additional arguments
+
+        Returns:
+            Tool execution results
+        """
+        # Extract messages from input
+        messages = input.get("messages", [])
+
+        # Find messages with tool calls
+        tool_call_messages = [
+            msg for msg in messages
+            if hasattr(msg, "tool_calls") and msg.tool_calls
+        ]
+
+        if tool_call_messages:
+            # Log tool calls before execution
+            for msg in tool_call_messages:
+                for tool_call in msg.tool_calls:
+                    tool_name = tool_call.get("name", "unknown")
+                    tool_args = tool_call.get("args", {})
+                    tool_id = tool_call.get("id", "unknown")
+
+                    logger.debug(
+                        f"[ToolNode] Calling tool: {tool_name} "
+                        f"(id: {tool_id}) with args: {tool_args}"
+                    )
+
+        # Start timing
+        start_time = time.time()
+
+        try:
+            # Execute tool calls via parent class
+            result = super().invoke(input, config, **kwargs)
+
+            # Calculate execution time
+            elapsed_time = time.time() - start_time
+
+            # Log results
+            if tool_call_messages:
+                tool_count = sum(
+                    len(msg.tool_calls)
+                    for msg in tool_call_messages
+                )
+
+                logger.debug(
+                    f"[ToolNode] Executed {tool_count} tool(s) "
+                    f"in {elapsed_time:.3f}s"
+                )
+
+                # Log individual tool results
+                result_messages = result.get("messages", [])
+                for msg in result_messages:
+                    if hasattr(msg, "name") and hasattr(msg, "content"):
+                        content_preview = (
+                            str(msg.content)[:100] + "..."
+                            if len(str(msg.content)) > 100
+                            else str(msg.content)
+                        )
+                        logger.debug(
+                            f"[ToolNode] Tool '{msg.name}' returned: "
+                            f"{content_preview}"
+                        )
+
+            return result
+
+        except Exception as e:
+            # Log error with execution time
+            elapsed_time = time.time() - start_time
+            logger.debug(
+                f"[ToolNode] Tool execution failed after {elapsed_time:.3f}s: "
+                f"{type(e).__name__}: {str(e)}"
+            )
+            logger.exception("[ToolNode] Full traceback:")
+            raise
 
 
 # Future: Add more specialized node types
