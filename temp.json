@@ -1,0 +1,186 @@
+{
+  "champion": "ELISE",
+  "position": "JUNGLE",
+  "win_rate": 0.52,
+  "pick_rate": 0.04,
+  "ban_rate": 0.04,
+  "recommended_build": {
+    "core_items": [
+      {
+        "ids": "[4646,4645,3157]",
+        "play": 1031,
+        "win": 527,
+        "pick_rate": 0.2
+      }
+    ],
+    "boots": [
+      {
+        "ids": "[3020]",
+        "play": 9181,
+        "win": 4717,
+        "pick_rate": 0.98
+      }
+    ],
+    "starter_items": [
+      {
+        "ids": "[1101,2003]",
+        "play": 3618,
+        "win": 1875,
+        "pick_rate": 0.37
+      }
+    ],
+    "last_items": [
+      {
+        "ids": "[4646]",
+        "play": 8253,
+        "win": 4227,
+        "pick_rate": 0.8
+      },
+      {
+        "ids": "[4645]",
+        "play": 7316,
+        "win": 3872,
+        "pick_rate": 0.71
+      },
+      {
+        "ids": "[1082]",
+        "play": 3699,
+        "win": 1926,
+        "pick_rate": 0.36
+      }
+    ],
+    "fourth_items": [
+      {
+        "ids": "[3089]",
+        "play": 503,
+        "win": 319,
+        "pick_rate": 0.25
+      },
+      {
+        "ids": "[3135]",
+        "play": 470,
+        "win": 266,
+        "pick_rate": 0.23
+      },
+      {
+        "ids": "[3157]",
+        "play": 434,
+        "win": 289,
+        "pick_rate": 0.22
+      }
+    ],
+    "fifth_items": [
+      {
+        "ids": "[3135]",
+        "play": 127,
+        "win": 75,
+        "pick_rate": 0.25
+      },
+      {
+        "ids": "[3089]",
+        "play": 91,
+        "win": 59,
+        "pick_rate": 0.18
+      },
+      {
+        "ids": "[3102]",
+        "play": 81,
+        "win": 40,
+        "pick_rate": 0.16
+      }
+    ],
+    "sixth_items": [
+      {
+        "ids": "[3102]",
+        "play": 8,
+        "win": 4,
+        "pick_rate": 0.36
+      },
+      {
+        "ids": "[3100]",
+        "play": 5,
+        "win": 1,
+        "pick_rate": 0.23
+      },
+      {
+        "ids": "[3135]",
+        "play": 3,
+        "win": 3,
+        "pick_rate": 0.14
+      }
+    ]
+  },
+  "skill_order": {
+    "skills": [
+      {
+        "order": "[\\"W\\",\\"Q\\",\\"E\\",\\"Q\\",\\"Q\\",\\"R\\",\\"Q\\",\\"W\\",\\"Q\\",\\"W\\",\\"R\\",\\"W\\",\\"W\\",\\"E\\",\\"E\\"]",
+        "play": 3413,
+        "win": 2273,
+        "pick_rate": 0.6
+      }
+    }
+  ],
+  "items": {
+    "boots": [
+      {
+        "ids": "[3020]",
+        "play": 9181,
+        "win": 4717,
+        "pick_rate": 0.98
+      }
+    ],
+    "starter_items": [
+      {
+        "ids": "[1101,2003]",
+        "play": 3618,
+        "win": 1875,
+        "pick_rate": 0.37
+      }
+    ]
+  },
+  "counter_pick": {
+    "strong_counters": [
+      {
+        "champion_id": 64,
+        "play": 663,
+        "win": 359,
+        "win_rate": 0.54
+      }
+    ]
+  },
+  "weaknesses": {
+    "weak_counters": []
+  },
+  "recommended_synergies": {
+    "JUNGLE": [
+      {
+        "synergy_champion_id": 58,
+        "synergy_position": "TOP",
+        "score_rank": 1,
+        "score": 0,
+        "play": 132,
+        "win": 76,
+        "win_rate": 0.58
+      },
+      {
+        "synergy_champion_id": 897,
+        "synergy_position": "TOP",
+        "score_rank": 8,
+        "score": 0,
+        "play": 90,
+        "win": 51,
+        "win_rate": 0.57
+      },
+      {
+        "synergy_champion_id": 39,
+        "synergy_position": "TOP",
+        "score_rank": 9,
+        "score": 0,
+        "play": 78,
+        "win": 44,
+        "win_rate": 0.56
+      }
+    ]
+  },
+  "damage_type": "AP"
+}
