@@ -1,0 +1,459 @@
+{
+    "champion": "AHRI",
+    "position": "MID",
+    "column_descriptions": {
+        "summary": "Champion summary information",
+        "summoner_spells": "Summoner spell IDs (JSON array)",
+        "core_items": "List of core items for the champion",
+        "mythic_items": "List of mythic items for the champion",
+        "boots": "List of recommended boots for the champion",
+        "starter_items": "List of recommended starter items",
+        "last_items": "List of recommended final items",
+        "fourth_items": "List of recommended 4th slot items",
+        "fifth_items": "List of recommended 5th slot items",
+        "sixth_items": "List of recommended 6th slot items",
+        "rune_pages": "List of recommended rune pages",
+        "runes": "List of recommended runes",
+        "skill_masteries": "List of skill masteries",
+        "skills": "List of skill build orders",
+        "skill_evolves": "List of skill evolution orders",
+        "trends": "Champion performance trends",
+        "game_lengths": "Champion performance by game length",
+        "strong_counters": "List of champions that counter me (my win rate < 50% against them)",
+        "weak_counters": "List of champions I counter (my win rate > 50% against them)",
+        "damage_type": "Champion damage type (AD/AP/BOTH)",
+        "synergies": "List of champions with high synergy rates by position (TOP, JUNGLE, MID, ADC, SUPPORT)",
+        "champion_id": "Champion identifier",
+        "primary_page_id": "Primary rune tree ID",
+        "secondary_page_id": "Secondary rune tree ID",
+        "primary_rune_ids": "Primary rune IDs sequence (JSON array)",
+        "secondary_rune_ids": "Secondary rune IDs sequence (JSON array)",
+        "stat_mod_ids": "Stat shard IDs sequence (JSON array)",
+        "ids": "Item IDs (JSON array)"
+    },
+    "data": {
+        "summary": {
+            "headers": [
+                "id",
+                "is_rotation",
+                "is_rip",
+                "average_stats.play",
+                "average_stats.win_rate",
+                "average_stats.pick_rate",
+                "average_stats.ban_rate",
+                "average_stats.kda",
+                "average_stats.tier",
+                "average_stats.rank",
+                "average_stats.tier_data.tier",
+                "average_stats.tier_data.rank",
+                "average_stats.tier_data.rank_prev",
+                "average_stats.tier_data.rank_prev_patch",
+                "positions.{name|stats|roles|counters}",
+                "roles"
+            ],
+            "rows": [
+                [
+                    103,
+                    false,
+                    false,
+                    35926,
+                    0.5,
+                    0.07,
+                    0.02,
+                    2.6,
+                    2,
+                    71,
+                    2,
+                    71,
+                    69,
+                    73,
+                    "[{\"name\":\"MID\",\"stats\":{\"play\":34620,\"win_rate\":0.5,\"pick_rate\":0.07,\"role_rate\":0.96,\"ban_rate\":0.02,\"kda\":2.61,\"tier_data\":{\"tier\":1,\"rank\":11,\"rank_prev\":11,\"rank_prev_patch\":9}},\"roles\":[{\"name\":\"MAGE\",\"stats\":{\"win_rate\":0.5,\"role_rate\":1,\"play\":31318,\"win\":15804}}],\"counters\":[{\"champion_id\":246,\"play\":369,\"win\":162},{\"champion_id\":80,\"play\":77,\"win\":34},{\"champion_id\":10,\"play\":300,\"win\":133}]}]",
+                    "[]"
+                ]
+            ]
+        },
+        "damage_type": {
+            "headers": [
+                "value"
+            ],
+            "rows": [
+                [
+                    "AP"
+                ]
+            ]
+        },
+        "strong_counters": {
+            "headers": [
+                "champion_id",
+                "play",
+                "win",
+                "win_rate"
+            ],
+            "rows": [
+                [
+                    777,
+                    627,
+                    346,
+                    0.55
+                ],
+                [
+                    90,
+                    715,
+                    386,
+                    0.54
+                ],
+                [
+                    4,
+                    624,
+                    334,
+                    0.54
+                ]
+            ]
+        },
+        "weak_counters": {
+            "headers": [
+                "champion_id",
+                "play",
+                "win",
+                "win_rate"
+            ],
+            "rows": [
+                [
+                    142,
+                    669,
+                    310,
+                    0.54
+                ],
+                [
+                    7,
+                    1063,
+                    495,
+                    0.53
+                ],
+                [
+                    800,
+                    924,
+                    431,
+                    0.53
+                ]
+            ]
+        },
+        "synergies": {
+            "headers": [
+                "top.{champion_id|position|synergy_champion_id|synergy_position|score_rank|score|play|win|win_rate|synergy_tier_data}",
+                "jungle.{champion_id|position|synergy_champion_id|synergy_position|score_rank|score|play|win|win_rate|synergy_tier_data}",
+                "adc.{champion_id|position|synergy_champion_id|synergy_position|score_rank|score|play|win|win_rate|synergy_tier_data}",
+                "support.{champion_id|position|synergy_champion_id|synergy_position|score_rank|score|play|win|win_rate|synergy_tier_data}"
+            ],
+            "rows": [
+                [
+                    "[{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":58,\"synergy_position\":\"TOP\",\"score_rank\":7,\"score\":0,\"play\":257,\"win\":147,\"win_rate\":0.57,\"synergy_tier_data\":{\"tier\":1,\"rank\":9,\"rank_prev\":9,\"rank_prev_patch\":16}},{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":39,\"synergy_position\":\"TOP\",\"score_rank\":10,\"score\":0,\"play\":227,\"win\":121,\"win_rate\":0.53,\"synergy_tier_data\":{\"tier\":1,\"rank\":2,\"rank_prev\":2,\"rank_prev_patch\":4}},{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":14,\"synergy_position\":\"TOP\",\"score_rank\":4,\"score\":0,\"play\":326,\"win\":168,\"win_rate\":0.52,\"synergy_tier_data\":{\"tier\":1,\"rank\":6,\"rank_prev\":6,\"rank_prev_patch\":2}}]",
+                    "[{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":517,\"synergy_position\":\"JUNGLE\",\"score_rank\":5,\"score\":0,\"play\":431,\"win\":222,\"win_rate\":0.52,\"synergy_tier_data\":{\"tier\":1,\"rank\":2,\"rank_prev\":2,\"rank_prev_patch\":4}},{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":64,\"synergy_position\":\"JUNGLE\",\"score_rank\":1,\"score\":0,\"play\":1099,\"win\":559,\"win_rate\":0.51,\"synergy_tier_data\":{\"tier\":1,\"rank\":1,\"rank_prev\":1,\"rank_prev_patch\":1}},{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":254,\"synergy_position\":\"JUNGLE\",\"score_rank\":4,\"score\":0,\"play\":434,\"win\":218,\"win_rate\":0.5,\"synergy_tier_data\":{\"tier\":4,\"rank\":33,\"rank_prev\":34,\"rank_prev_patch\":28}}]",
+                    "[{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":22,\"synergy_position\":\"ADC\",\"score_rank\":3,\"score\":0,\"play\":569,\"win\":296,\"win_rate\":0.52,\"synergy_tier_data\":{\"tier\":0,\"rank\":1,\"rank_prev\":1,\"rank_prev_patch\":1}},{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":202,\"synergy_position\":\"ADC\",\"score_rank\":7,\"score\":0,\"play\":460,\"win\":236,\"win_rate\":0.51,\"synergy_tier_data\":{\"tier\":2,\"rank\":8,\"rank_prev\":8,\"rank_prev_patch\":11}},{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":145,\"synergy_position\":\"ADC\",\"score_rank\":1,\"score\":0,\"play\":1054,\"win\":537,\"win_rate\":0.51,\"synergy_tier_data\":{\"tier\":1,\"rank\":2,\"rank_prev\":2,\"rank_prev_patch\":3}}]",
+                    "[{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":43,\"synergy_position\":\"SUPPORT\",\"score_rank\":5,\"score\":0,\"play\":340,\"win\":191,\"win_rate\":0.56,\"synergy_tier_data\":{\"tier\":1,\"rank\":4,\"rank_prev\":5,\"rank_prev_patch\":11}},{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":111,\"synergy_position\":\"SUPPORT\",\"score_rank\":2,\"score\":0,\"play\":422,\"win\":234,\"win_rate\":0.55,\"synergy_tier_data\":{\"tier\":1,\"rank\":3,\"rank_prev\":3,\"rank_prev_patch\":8}},{\"champion_id\":103,\"position\":\"MID\",\"synergy_champion_id\":201,\"synergy_position\":\"SUPPORT\",\"score_rank\":7,\"score\":0,\"play\":279,\"win\":142,\"win_rate\":0.51,\"synergy_tier_data\":{\"tier\":1,\"rank\":6,\"rank_prev\":6,\"rank_prev_patch\":4}}]"
+                ]
+            ]
+        },
+        "core_items": {
+            "headers": [
+                "ids",
+                "play",
+                "win",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    "[3118,4645,3157]",
+                    1397,
+                    738,
+                    0.09
+                ]
+            ]
+        },
+        "mythic_items": {
+            "headers": [],
+            "rows": [
+                []
+            ]
+        },
+        "boots": {
+            "headers": [
+                "ids",
+                "play",
+                "win",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    "[3020]",
+                    17396,
+                    8908,
+                    0.59
+                ]
+            ]
+        },
+        "starter_items": {
+            "headers": [
+                "ids",
+                "play",
+                "win",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    "[1056,2003,2003]",
+                    29740,
+                    14970,
+                    0.98
+                ]
+            ]
+        },
+        "last_items": {
+            "headers": [
+                "ids",
+                "play",
+                "win",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    "[3118]",
+                    20039,
+                    10094,
+                    0.63
+                ],
+                [
+                    "[4645]",
+                    11657,
+                    6124,
+                    0.36
+                ],
+                [
+                    "[4628]",
+                    8596,
+                    4597,
+                    0.27
+                ]
+            ]
+        },
+        "fourth_items": {
+            "headers": [
+                "ids",
+                "play",
+                "win",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    "[3089]",
+                    1877,
+                    1121,
+                    0.3
+                ],
+                [
+                    "[3157]",
+                    1418,
+                    842,
+                    0.23
+                ],
+                [
+                    "[3135]",
+                    630,
+                    340,
+                    0.1
+                ]
+            ]
+        },
+        "fifth_items": {
+            "headers": [
+                "ids",
+                "play",
+                "win",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    "[3089]",
+                    264,
+                    184,
+                    0.18
+                ],
+                [
+                    "[3157]",
+                    228,
+                    143,
+                    0.16
+                ],
+                [
+                    "[3135]",
+                    200,
+                    100,
+                    0.14
+                ]
+            ]
+        },
+        "sixth_items": {
+            "headers": [
+                "ids",
+                "play",
+                "win",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    "[4629]",
+                    13,
+                    12,
+                    0.22
+                ],
+                [
+                    "[4645]",
+                    7,
+                    3,
+                    0.12
+                ],
+                [
+                    "[3137]",
+                    5,
+                    5,
+                    0.08
+                ]
+            ]
+        },
+        "summoner_spells": {
+            "headers": [
+                "ids",
+                "win",
+                "play",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    "[4,12]",
+                    13659,
+                    27226,
+                    0.85
+                ]
+            ]
+        },
+        "runes": {
+            "headers": [
+                "id",
+                "primary_page_id",
+                "primary_rune_ids",
+                "secondary_page_id",
+                "secondary_rune_ids",
+                "stat_mod_ids",
+                "play",
+                "win",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    8112,
+                    8100,
+                    "[8112,8139,8140,8106]",
+                    8200,
+                    "[8210,8226]",
+                    "[5005,5008,5001]",
+                    15601,
+                    7769,
+                    0.48
+                ]
+            ]
+        },
+        "skills": {
+            "headers": [
+                "order",
+                "play",
+                "win",
+                "pick_rate"
+            ],
+            "rows": [
+                [
+                    "[\"W\",\"Q\",\"E\",\"Q\",\"Q\",\"R\",\"Q\",\"W\",\"Q\",\"W\",\"R\",\"W\",\"W\",\"E\",\"E\"]",
+                    9829,
+                    5721,
+                    0.45
+                ]
+            ]
+        },
+        "skill_masteries": {
+            "headers": [
+                "ids",
+                "play",
+                "win",
+                "pick_rate",
+                "builds.{order|play|win|pick_rate}"
+            ],
+            "rows": [
+                [
+                    "[\"Q\",\"W\",\"E\"]",
+                    18650,
+                    10913,
+                    0.85,
+                    "[{\"order\":[\"W\",\"Q\",\"E\",\"Q\",\"Q\",\"R\",\"Q\",\"W\",\"Q\",\"W\",\"R\",\"W\",\"W\",\"E\",\"E\"],\"play\":9829,\"win\":5721,\"pick_rate\":0.53},{\"order\":[\"Q\",\"W\",\"E\",\"Q\",\"Q\",\"R\",\"Q\",\"W\",\"Q\",\"W\",\"R\",\"W\",\"W\",\"E\",\"E\"],\"play\":2915,\"win\":1730,\"pick_rate\":0.16},{\"order\":[\"W\",\"E\",\"Q\",\"Q\",\"Q\",\"R\",\"Q\",\"W\",\"Q\",\"W\",\"R\",\"W\",\"W\",\"E\",\"E\"],\"play\":1054,\"win\":637,\"pick_rate\":0.06},{\"order\":[\"E\",\"Q\",\"W\",\"Q\",\"Q\",\"R\",\"Q\",\"W\",\"Q\",\"W\",\"R\",\"W\",\"W\",\"E\",\"E\"],\"play\":783,\"win\":471,\"pick_rate\":0.04},{\"order\":[\"Q\",\"E\",\"W\",\"Q\",\"Q\",\"R\",\"Q\",\"W\",\"Q\",\"W\",\"R\",\"W\",\"W\",\"E\",\"E\"],\"play\":627,\"win\":337,\"pick_rate\":0.03}]"
+                ]
+            ]
+        },
+        "trends": {
+            "headers": [
+                "total_rank",
+                "total_position_rank",
+                "win.version",
+                "win.rate",
+                "win.rank",
+                "win.created_at",
+                "pick.version",
+                "pick.rate",
+                "pick.rank",
+                "pick.created_at",
+                "ban.version",
+                "ban.rate",
+                "ban.rank",
+                "ban.created_at"
+            ],
+            "rows": [
+                [
+                    171,
+                    57,
+                    15.21,
+                    0.5,
+                    38,
+                    "2025-10-26T22:31:48+09:00",
+                    15.21,
+                    0.07,
+                    6,
+                    "2025-10-26T22:31:48+09:00",
+                    15.21,
+                    0.02,
+                    41,
+                    "2025-10-26T22:31:48+09:00"
+                ]
+            ]
+        }
+    },
+    "metadata_maps": {
+        "champion_ids": {
+            "777": "犽凝",
+            "90": "馬爾札哈",
+            "4": "逆命",
+            "142": "柔依",
+            "7": "勒布朗",
+            "800": "梅爾"
+        },
+        "item_ids": {
+            "3118": "惡意",
+            "4645": "黯影之炎",
+            "3157": "中婭沙漏",
+            "3020": "法師之靴",
+            "1056": "多蘭之戒",
+            "2003": "生命藥水",
+            "4628": "視界專注",
+            "3089": "死亡之帽",
+            "3135": "虛空之杖",
+            "4629": "星河馳騁",
+            "3137": "死墓之花"
+        }
+    }
+}

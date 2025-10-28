@@ -1,0 +1,63 @@
+{
+    "player": {
+        "nickname": "Faker",
+        "real_name": "Lee Sang-hyeok (이상혁)",
+        "region": "kr",
+        "team": {
+            "id": 385,
+            "name": "T1",
+            "short_name": "T1"
+        },
+        "riot_id": {
+            "game_name": "Hide on bush",
+            "tagline": "KR1",
+            "full": "Hide on bush#KR1"
+        },
+        "aliases": [
+            "Faker",
+            "Lee Sang-hyeok (이상혁)",
+            "Hide on bush",
+            "이상혁",
+            "Lee Sang-hyeok"
+        ]
+    },
+    "suggestions": [],
+    "flat": {
+        "column_descriptions": {
+            "nickname": "Primary in-game nickname used by the pro player.",
+            "real_name": "Official real name pulled from OP.GG esports rosters.",
+            "region": "League region shard where the player competes.",
+            "team.id": "Numeric OP.GG team identifier.",
+            "team.name": "Full team name.",
+            "team.short_name": "Short/abbreviated team name.",
+            "riot_id.game_name": "Riot ID game name portion.",
+            "riot_id.tagline": "Riot ID tagline portion."
+        },
+        "data": {
+            "pro_players": {
+                "headers": [
+                    "nickname",
+                    "real_name",
+                    "region",
+                    "team.id",
+                    "team.name",
+                    "team.short_name",
+                    "riot_id.game_name",
+                    "riot_id.tagline"
+                ],
+                "rows": [
+                    [
+                        "Faker",
+                        "Lee Sang-hyeok (이상혁)",
+                        "kr",
+                        385,
+                        "T1",
+                        "T1",
+                        "Hide on bush",
+                        "KR1"
+                    ]
+                ]
+            }
+        }
+    }
+}

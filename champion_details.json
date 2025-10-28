@@ -1,0 +1,43 @@
+{
+  "tool_name": "lol_list_champion_details",
+  "champion_name": "Ahri",
+  "skills": [
+    {
+      "key": "Q",
+      "name": "幻玉",
+      "description": "阿璃擲出她的幻玉後再召回，飛出時造成魔法傷害。折返時造成真實傷害。",
+      "max_rank": 5,
+      "cooldown_burn": [7],
+      "cost_burn": [55, 65, 75, 85, 95]
+    },
+    {
+      "key": "W",
+      "name": "魅火",
+      "description": "阿璃獲得短暫的爆發性跑速加成，並釋放出三團狐火，鎖定附近的敵人進行攻擊。",
+      "max_rank": 5,
+      "cooldown_burn": [10, 9, 8, 7, 6],
+      "cost_burn": [30]
+    },
+    {
+      "key": "E",
+      "name": "傾城",
+      "description": "阿璃送出飛吻，傷害並魅惑一名命中的敵方英雄，立刻打斷移動技能，並使對方毫無抵抗的走向她。",
+      "max_rank": 5,
+      "cooldown_burn": [12],
+      "cost_burn": [60]
+    },
+    {
+      "key": "R",
+      "name": "飛仙",
+      "description": "阿璃向前衝刺並發射魔法彈，傷害附近敵人。飛仙進入冷卻前最多可以施放 3 次，參與敵方英雄的擊殺時，可獲得額外的重新施放次數。",
+      "max_rank": 3,
+      "cooldown_burn": [140, 120, 100],
+      "cost_burn": [100]
+    }
+  ],
+  "skill_upgrade_priority_note": "The instruction asks for 'skill upgrade order', which is not explicitly present in the data. The available data shows skill details including max_rank and cooldown/cost progression, which implies upgrade levels. Since a specific order (like Q>E>W) is missing, I'm listing the skills with their max ranks and progression data as the closest available information related to upgrading.",
+  "passive": {
+    "name": "銷魂",
+    "description": "擊殺9名士兵或野怪後，阿璃獲得治療。<br>參與一名敵方英雄的擊殺後，阿璃獲得更大量的治療。"
+  }
+}

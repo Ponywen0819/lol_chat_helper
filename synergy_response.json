@@ -1,0 +1,65 @@
+{
+  "column_descriptions": {
+    "champion": "Your champion",
+    "my_position": "Your position",
+    "synergy_position": "Target synergy position",
+    "champion_id": "Your champion ID",
+    "position": "Your position",
+    "synergy_champion_id": "Recommended synergy champion ID",
+    "score_rank": "Synergy ranking (1 is best)",
+    "score": "Synergy score",
+    "play": "Number of games played together",
+    "win": "Number of games won together",
+    "win_rate": "Win rate when played together",
+    "synergy_tier_data.tier": "Synergy tier (0=OP, 1=S, 2=A, 3=B, 4=C)",
+    "synergy_tier_data.rank": "Current rank within tier",
+    "synergy_tier_data.rank_prev": "Previous rank within tier",
+    "synergy_tier_data.rank_prev_patch": "Rank in previous patch"
+  },
+  "data": {
+    "synergies": {
+      "headers": [
+        "champion_id",
+        "position",
+        "synergy_champion_id",
+        "synergy_position",
+        "score_rank",
+        "score",
+        "play",
+        "win",
+        "win_rate",
+        "synergy_tier_data.tier",
+        "synergy_tier_data.rank",
+        "synergy_tier_data.rank_prev",
+        "synergy_tier_data.rank_prev_patch"
+      ],
+      "rows": [
+        [103, "MID", 64, "JUNGLE", 1, 0, 1090, 553, 0.51, 1, 1, 1, 1],
+        [103, "MID", 104, "JUNGLE", 2, 0, 542, 269, 0.5, 2, 6, 6, 33],
+        [103, "MID", 234, "JUNGLE", 3, 0, 460, 229, 0.5, 2, 19, 19, 22],
+        [103, "MID", 254, "JUNGLE", 4, 0, 434, 218, 0.5, 4, 35, 35, 28],
+        [103, "MID", 517, "JUNGLE", 5, 0, 429, 220, 0.51, 1, 2, 2, 4],
+        [103, "MID", 246, "JUNGLE", 6, 0, 371, 154, 0.42, 5, 47, 47, 39],
+        [103, "MID", 5, "JUNGLE", 7, 0, 263, 127, 0.48, 2, 13, 11, 15],
+        [103, "MID", 121, "JUNGLE", 8, 0, 226, 113, 0.5, 2, 15, 14, 5],
+        [103, "MID", 59, "JUNGLE", 9, 0, 223, 104, 0.47, 3, 26, 26, 13],
+        [103, "MID", 76, "JUNGLE", 10, 0, 170, 76, 0.45, 2, 18, 18, 3]
+      ]
+    }
+  },
+  "metadata_maps": {
+    "champion_ids": {
+      "103": "阿璃",
+      "64": "李星",
+      "104": "葛雷夫",
+      "234": "維爾戈",
+      "254": "菲艾",
+      "517": "賽勒斯",
+      "246": "姬亞娜",
+      "5": "趙信",
+      "121": "卡力斯",
+      "59": "嘉文四世",
+      "76": "奈德麗"
+    }
+  }
+}

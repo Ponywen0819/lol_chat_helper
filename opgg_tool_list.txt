@@ -1,0 +1,178 @@
+Tool: lol_list_champion_leaderboard 
+ Description: Retrieves the leaderboard of master players who play a specific champion well. You can also look up the high ranked players, like the high winrate 5 players in #1-#30, to retrieve their champion performance or recent match history to teach how to play the champions.
+  - region: {'type': 'string', 'enum': ['KR', 'BR', 'EUNE', 'EUW', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR', 'JP', 'PH', 'SG', 'TH', 'TW', 'VN', 'ME', 'SEA'], 'description': 'Regions in the game League of Legends.'}
+  - champion: {'type': 'string', 'enum': ['ANNIE', 'OLAF', 'GALIO', 'TWISTED_FATE', 'XIN_ZHAO', 'URGOT', 'LEBLANC', 'VLADIMIR', 'FIDDLESTICKS', 'KAYLE', 'MASTER_YI', 'ALISTAR', 'RYZE', 'SION', 'SIVIR', 'SORAKA', 'TEEMO', 'TRISTANA', 'WARWICK', 'NUNU_WILLUMP', 'MISS_FORTUNE', 'ASHE', 'TRYNDAMERE', 'JAX', 'MORGANA', 'ZILEAN', 'SINGED', 'EVELYNN', 'TWITCH', 'KARTHUS', 'CHOGATH', 'AMUMU', 'RAMMUS', 'ANIVIA', 'SHACO', 'DR_MUNDO', 'SONA', 'KASSADIN', 'IRELIA', 'JANNA', 'GANGPLANK', 'CORKI', 'KARMA', 'TARIC', 'VEIGAR', 'TRUNDLE', 'SWAIN', 'CAITLYN', 'BLITZCRANK', 'MALPHITE', 'KATARINA', 'NOCTURNE', 'MAOKAI', 'RENEKTON', 'JARVAN_IV', 'ELISE', 'ORIANNA', 'WUKONG', 'BRAND', 'LEE_SIN', 'VAYNE', 'RUMBLE', 'CASSIOPEIA', 'SKARNER', 'HEIMERDINGER', 'NASUS', 'NIDALEE', 'UDYR', 'POPPY', 'GRAGAS', 'PANTHEON', 'EZREAL', 'MORDEKAISER', 'YORICK', 'AKALI', 'KENNEN', 'GAREN', 'LEONA', 'MALZAHAR', 'TALON', 'RIVEN', 'KOGMAW', 'SHEN', 'LUX', 'XERATH', 'SHYVANA', 'AHRI', 'GRAVES', 'FIZZ', 'VOLIBEAR', 'RENGAR', 'VARUS', 'NAUTILUS', 'VIKTOR', 'SEJUANI', 'FIORA', 'ZIGGS', 'LULU', 'DRAVEN', 'HECARIM', 'KHAZIX', 'DARIUS', 'JAYCE', 'LISSANDRA', 'DIANA', 'QUINN', 'SYNDRA', 'AURELION_SOL', 'KAYN', 'ZOE', 'ZYRA', 'KAISA', 'SERAPHINE', 'GNAR', 'ZAC', 'YASUO', 'VELKOZ', 'TALIYAH', 'CAMILLE', 'AKSHAN', 'BELVETH', 'BRAUM', 'JHIN', 'KINDRED', 'ZERI', 'JINX', 'TAHM_KENCH', 'BRIAR', 'VIEGO', 'SENNA', 'LUCIAN', 'ZED', 'KLED', 'EKKO', 'QIYANA', 'VI', 'AATROX', 'NAMI', 'AZIR', 'YUUMI', 'SAMIRA', 'THRESH', 'ILLAOI', 'REKSAI', 'IVERN', 'KALISTA', 'BARD', 'RAKAN', 'XAYAH', 'ORNN', 'SYLAS', 'NEEKO', 'APHELIOS', 'RELL', 'PYKE', 'VEX', 'YONE', 'AMBESSA', 'SETT', 'LILLIA', 'GWEN', 'RENATA_GLASC', 'AURORA', 'NILAH', 'KSANTE', 'SMOLDER', 'MILIO', 'HWEI', 'NAAFIRI'], 'description': 'These are the champion names in the game League of Legends.'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_get_champion_analysis 
+ Description: Retrieves very detailed information about a specific champion, such as win rate, pick rate, recommended builds, recommended skill order, recommended items, etc. If a user mentions a specific champion, you *must* always call this function, review the data, and then respond. If the user asks some tips during playing game, you should also occasionally call this function to advice how to play the game well. If the users asks like 'what items should I buy?', 'which skill should I level up?', also you need to call this function to see the high winrate champions. (Counter Picks ban/pick data is available in the `weakCounters` field). You must assume the position user want to know.
+  - game_mode: {'type': 'string', 'enum': ['RANKED', 'FLEX', 'URF', 'ARAM', 'NEXUS_BLITZ'], 'description': 'Different queue types and game modes in League of Legends.'}
+  - champion: {'type': 'string', 'enum': ['ANNIE', 'OLAF', 'GALIO', 'TWISTED_FATE', 'XIN_ZHAO', 'URGOT', 'LEBLANC', 'VLADIMIR', 'FIDDLESTICKS', 'KAYLE', 'MASTER_YI', 'ALISTAR', 'RYZE', 'SION', 'SIVIR', 'SORAKA', 'TEEMO', 'TRISTANA', 'WARWICK', 'NUNU_WILLUMP', 'MISS_FORTUNE', 'ASHE', 'TRYNDAMERE', 'JAX', 'MORGANA', 'ZILEAN', 'SINGED', 'EVELYNN', 'TWITCH', 'KARTHUS', 'CHOGATH', 'AMUMU', 'RAMMUS', 'ANIVIA', 'SHACO', 'DR_MUNDO', 'SONA', 'KASSADIN', 'IRELIA', 'JANNA', 'GANGPLANK', 'CORKI', 'KARMA', 'TARIC', 'VEIGAR', 'TRUNDLE', 'SWAIN', 'CAITLYN', 'BLITZCRANK', 'MALPHITE', 'KATARINA', 'NOCTURNE', 'MAOKAI', 'RENEKTON', 'JARVAN_IV', 'ELISE', 'ORIANNA', 'WUKONG', 'BRAND', 'LEE_SIN', 'VAYNE', 'RUMBLE', 'CASSIOPEIA', 'SKARNER', 'HEIMERDINGER', 'NASUS', 'NIDALEE', 'UDYR', 'POPPY', 'GRAGAS', 'PANTHEON', 'EZREAL', 'MORDEKAISER', 'YORICK', 'AKALI', 'KENNEN', 'GAREN', 'LEONA', 'MALZAHAR', 'TALON', 'RIVEN', 'KOGMAW', 'SHEN', 'LUX', 'XERATH', 'SHYVANA', 'AHRI', 'GRAVES', 'FIZZ', 'VOLIBEAR', 'RENGAR', 'VARUS', 'NAUTILUS', 'VIKTOR', 'SEJUANI', 'FIORA', 'ZIGGS', 'LULU', 'DRAVEN', 'HECARIM', 'KHAZIX', 'DARIUS', 'JAYCE', 'LISSANDRA', 'DIANA', 'QUINN', 'SYNDRA', 'AURELION_SOL', 'KAYN', 'ZOE', 'ZYRA', 'KAISA', 'SERAPHINE', 'GNAR', 'ZAC', 'YASUO', 'VELKOZ', 'TALIYAH', 'CAMILLE', 'AKSHAN', 'BELVETH', 'BRAUM', 'JHIN', 'KINDRED', 'ZERI', 'JINX', 'TAHM_KENCH', 'BRIAR', 'VIEGO', 'SENNA', 'LUCIAN', 'ZED', 'KLED', 'EKKO', 'QIYANA', 'VI', 'AATROX', 'NAMI', 'AZIR', 'YUUMI', 'SAMIRA', 'THRESH', 'ILLAOI', 'REKSAI', 'IVERN', 'KALISTA', 'BARD', 'RAKAN', 'XAYAH', 'ORNN', 'SYLAS', 'NEEKO', 'APHELIOS', 'RELL', 'PYKE', 'VEX', 'YONE', 'AMBESSA', 'SETT', 'LILLIA', 'GWEN', 'RENATA_GLASC', 'AURORA', 'NILAH', 'KSANTE', 'SMOLDER', 'MILIO', 'HWEI', 'NAAFIRI'], 'description': 'These are the champion names in the game League of Legends.'}
+  - position: {'type': 'string', 'enum': ['top', 'mid', 'jungle', 'adc', 'support'], 'description': 'These are the champion positions in the game League of Legends.'}
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content. Determines the language of returned data.'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_list_champions 
+ Description: Retrieves metadata for all League of Legends champions with localized names and keys. Returns champion_id, key, and name for all champions in the specified language in a table-friendly JSON (headers/rows/header_description).
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content (e.g., en_US, ko_KR, ja_JP). Determines the language of champion names.'}
+
+
+Tool: lol_list_champion_details 
+ Description: Retrieves detailed metadata for up to 10 champions including statistics, abilities, tips, and lore. Excludes skins and media URLs to reduce payload size.
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content (e.g., en_US, ko_KR). Defaults to en_US.', 'default': 'en_US'}
+  - champions: {'type': 'array', 'items': {'type': 'string', 'enum': ['ANNIE', 'OLAF', 'GALIO', 'TWISTED_FATE', 'XIN_ZHAO', 'URGOT', 'LEBLANC', 'VLADIMIR', 'FIDDLESTICKS', 'KAYLE', 'MASTER_YI', 'ALISTAR', 'RYZE', 'SION', 'SIVIR', 'SORAKA', 'TEEMO', 'TRISTANA', 'WARWICK', 'NUNU_WILLUMP', 'MISS_FORTUNE', 'ASHE', 'TRYNDAMERE', 'JAX', 'MORGANA', 'ZILEAN', 'SINGED', 'EVELYNN', 'TWITCH', 'KARTHUS', 'CHOGATH', 'AMUMU', 'RAMMUS', 'ANIVIA', 'SHACO', 'DR_MUNDO', 'SONA', 'KASSADIN', 'IRELIA', 'JANNA', 'GANGPLANK', 'CORKI', 'KARMA', 'TARIC', 'VEIGAR', 'TRUNDLE', 'SWAIN', 'CAITLYN', 'BLITZCRANK', 'MALPHITE', 'KATARINA', 'NOCTURNE', 'MAOKAI', 'RENEKTON', 'JARVAN_IV', 'ELISE', 'ORIANNA', 'WUKONG', 'BRAND', 'LEE_SIN', 'VAYNE', 'RUMBLE', 'CASSIOPEIA', 'SKARNER', 'HEIMERDINGER', 'NASUS', 'NIDALEE', 'UDYR', 'POPPY', 'GRAGAS', 'PANTHEON', 'EZREAL', 'MORDEKAISER', 'YORICK', 'AKALI', 'KENNEN', 'GAREN', 'LEONA', 'MALZAHAR', 'TALON', 'RIVEN', 'KOGMAW', 'SHEN', 'LUX', 'XERATH', 'SHYVANA', 'AHRI', 'GRAVES', 'FIZZ', 'VOLIBEAR', 'RENGAR', 'VARUS', 'NAUTILUS', 'VIKTOR', 'SEJUANI', 'FIORA', 'ZIGGS', 'LULU', 'DRAVEN', 'HECARIM', 'KHAZIX', 'DARIUS', 'JAYCE', 'LISSANDRA', 'DIANA', 'QUINN', 'SYNDRA', 'AURELION_SOL', 'KAYN', 'ZOE', 'ZYRA', 'KAISA', 'SERAPHINE', 'GNAR', 'ZAC', 'YASUO', 'VELKOZ', 'TALIYAH', 'CAMILLE', 'AKSHAN', 'BELVETH', 'BRAUM', 'JHIN', 'KINDRED', 'ZERI', 'JINX', 'TAHM_KENCH', 'BRIAR', 'VIEGO', 'SENNA', 'LUCIAN', 'ZED', 'KLED', 'EKKO', 'QIYANA', 'VI', 'AATROX', 'NAMI', 'AZIR', 'YUUMI', 'SAMIRA', 'THRESH', 'ILLAOI', 'REKSAI', 'IVERN', 'KALISTA', 'BARD', 'RAKAN', 'XAYAH', 'ORNN', 'SYLAS', 'NEEKO', 'APHELIOS', 'RELL', 'PYKE', 'VEX', 'YONE', 'AMBESSA', 'SETT', 'LILLIA', 'GWEN', 'RENATA_GLASC', 'AURORA', 'NILAH', 'KSANTE', 'SMOLDER', 'MILIO', 'HWEI', 'NAAFIRI']}, 'description': 'Array of champion names (e.g., ["ANNIE", "AHRI"]). Max 10 champions. Defaults to ["AHRI", "YASUO", "LUX"].', 'maxItems': 10, 'minItems': 1, 'default': ['AHRI', 'YASUO', 'LUX']}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_list_discounted_skins 
+ Description: Retrieves information about champion skins that are currently on sale.
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content. Determines the language of returned data.'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_get_champion_synergies 
+ Description: Get champion synergy recommendations for a specific position based on your champion and position
+  - champion: {'type': 'string', 'description': 'Your champion', 'enum': ['ANNIE', 'OLAF', 'GALIO', 'TWISTED_FATE', 'XIN_ZHAO', 'URGOT', 'LEBLANC', 'VLADIMIR', 'FIDDLESTICKS', 'KAYLE', 'MASTER_YI', 'ALISTAR', 'RYZE', 'SION', 'SIVIR', 'SORAKA', 'TEEMO', 'TRISTANA', 'WARWICK', 'NUNU_WILLUMP', 'MISS_FORTUNE', 'ASHE', 'TRYNDAMERE', 'JAX', 'MORGANA', 'ZILEAN', 'SINGED', 'EVELYNN', 'TWITCH', 'KARTHUS', 'CHOGATH', 'AMUMU', 'RAMMUS', 'ANIVIA', 'SHACO', 'DR_MUNDO', 'SONA', 'KASSADIN', 'IRELIA', 'JANNA', 'GANGPLANK', 'CORKI', 'KARMA', 'TARIC', 'VEIGAR', 'TRUNDLE', 'SWAIN', 'CAITLYN', 'BLITZCRANK', 'MALPHITE', 'KATARINA', 'NOCTURNE', 'MAOKAI', 'RENEKTON', 'JARVAN_IV', 'ELISE', 'ORIANNA', 'WUKONG', 'BRAND', 'LEE_SIN', 'VAYNE', 'RUMBLE', 'CASSIOPEIA', 'SKARNER', 'HEIMERDINGER', 'NASUS', 'NIDALEE', 'UDYR', 'POPPY', 'GRAGAS', 'PANTHEON', 'EZREAL', 'MORDEKAISER', 'YORICK', 'AKALI', 'KENNEN', 'GAREN', 'LEONA', 'MALZAHAR', 'TALON', 'RIVEN', 'KOGMAW', 'SHEN', 'LUX', 'XERATH', 'SHYVANA', 'AHRI', 'GRAVES', 'FIZZ', 'VOLIBEAR', 'RENGAR', 'VARUS', 'NAUTILUS', 'VIKTOR', 'SEJUANI', 'FIORA', 'ZIGGS', 'LULU', 'DRAVEN', 'HECARIM', 'KHAZIX', 'DARIUS', 'JAYCE', 'LISSANDRA', 'DIANA', 'QUINN', 'SYNDRA', 'AURELION_SOL', 'KAYN', 'ZOE', 'ZYRA', 'KAISA', 'SERAPHINE', 'GNAR', 'ZAC', 'YASUO', 'VELKOZ', 'TALIYAH', 'CAMILLE', 'AKSHAN', 'BELVETH', 'BRAUM', 'JHIN', 'KINDRED', 'ZERI', 'JINX', 'TAHM_KENCH', 'BRIAR', 'VIEGO', 'SENNA', 'LUCIAN', 'ZED', 'KLED', 'EKKO', 'QIYANA', 'VI', 'AATROX', 'NAMI', 'AZIR', 'YUUMI', 'SAMIRA', 'THRESH', 'ILLAOI', 'REKSAI', 'IVERN', 'KALISTA', 'BARD', 'RAKAN', 'XAYAH', 'ORNN', 'SYLAS', 'NEEKO', 'APHELIOS', 'RELL', 'PYKE', 'VEX', 'YONE', 'AMBESSA', 'SETT', 'LILLIA', 'GWEN', 'RENATA_GLASC', 'AURORA', 'NILAH', 'KSANTE', 'SMOLDER', 'MILIO', 'HWEI', 'NAAFIRI']}
+  - my_position: {'type': 'string', 'description': 'Your position', 'enum': ['top', 'mid', 'jungle', 'adc', 'support']}
+  - synergy_position: {'type': 'string', 'description': 'The position you want synergy recommendations for (teammate position)', 'enum': ['top', 'mid', 'jungle', 'adc', 'support']}
+  - lang: {'type': 'string', 'description': 'Language code for metadata'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_list_items 
+ Description: Retrieves metadata for League of Legends items with localized names, filtered by map (defaults to Summoner's Rift if not specified). Returns item_id, name, is_mythic, into_items, from_items, gold details, and plaintext in a table-friendly JSON format.
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content (e.g., en_US, ko_KR, ja_JP). Determines the language of item names.'}
+  - map: {'type': 'string', 'enum': ['SUMMONERS_RIFT', 'HOWLING_ABYSS', 'NEXUS_BLITZ', 'TEAMFIGHT_TACTICS', 'ARENA_MAP_1'], 'description': 'Map filter for items. Defaults to SUMMONERS_RIFT if not specified. Options: SUMMONERS_RIFT, HOWLING_ABYSS, NEXUS_BLITZ, TEAMFIGHT_TACTICS, ARENA_MAP_1.'}
+
+
+Tool: lol_get_summoner_profile 
+ Description: Retrieves summoner profile overview: rank, tier, win rate, champion pool, and overall statistics. Call this when user asks about summoner's profile, identity, rank, tier, stats, champion pool, main champions, or overall performance. You *must* call this for queries like "who is [summoner]", "show me [summoner]", "[summoner]'s rank", "[summoner]'s stats". DO NOT call if user asks about match history or recent games. If you can't find the summoner, ask which region they play in.
+  - game_name: {'type': 'string', 'description': 'The first part of a Riot ID (e.g., "Annie" in "Annie#Opgg").'}
+  - tag_line: {'type': 'string', 'description': 'The second part of a Riot ID (e.g., "Opgg" in "Annie#Opgg").'}
+  - region: {'type': 'string', 'enum': ['KR', 'BR', 'EUNE', 'EUW', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR', 'JP', 'PH', 'SG', 'TH', 'TW', 'VN', 'ME', 'SEA'], 'description': 'The region to search in (e.g., KR, NA, EUW).'}
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content. Determines the language of returned data.'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_list_lane_meta_champions 
+ Description: Retrieves champion analytics for each position separately. Returns data in position-specific fields (position.top, position.jungle, position.mid, position.adc, position.support) for easier LLM processing. Each position includes winrate, pickrate, banrate, KDA, and tier information. Tier 1 champions are OP/easy to play, recommended for users seeking strong picks.
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content. Determines the language of returned data. Defaults to en_US.', 'default': 'en_US'}
+  - position: {'type': 'string', 'enum': ['all', 'none', 'top', 'mid', 'jungle', 'adc', 'support'], 'description': 'Filter for specific position data. Use "all" to get data for all positions. Defaults to all.', 'default': 'all'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_list_summoner_matches 
+ Description: Retrieves detailed match history and recent game records of a summoner. Call this *only* when user explicitly asks about match history, recent games, game details, performance analysis, or wants advice/improvement tips. You *must* call this for queries like "show matches", "recent games", "how did [summoner] play", "game history", "how to improve". DO NOT call for profile or rank queries.
+  - game_name: {'type': 'string', 'description': 'The first part of a Riot ID (e.g., "Annie" in "Annie#Opgg").'}
+  - tag_line: {'type': 'string', 'description': 'The second part of a Riot ID (e.g., "Opgg" in "Annie#Opgg").'}
+  - region: {'type': 'string', 'enum': ['KR', 'BR', 'EUNE', 'EUW', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR', 'JP', 'PH', 'SG', 'TH', 'TW', 'VN', 'ME', 'SEA'], 'description': 'The region to search in (e.g., KR, NA, EUW).'}
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content. Determines the language of returned data.'}
+  - limit: {'type': 'integer', 'minimum': 1, 'description': 'Maximum number of matches to return.'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_get_summoner_game_detail 
+ Description: Retrieves detailed information for a specific match by game identifier and creation timestamp.
+  - region: {'type': 'string', 'enum': ['KR', 'BR', 'EUNE', 'EUW', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR', 'JP', 'PH', 'SG', 'TH', 'TW', 'VN', 'ME', 'SEA'], 'description': 'The region to search in (e.g., KR, NA, EUW).'}
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content. Determines the language of returned data.'}
+  - game_id: {'type': 'string', 'description': 'Unique identifier for the target match.'}
+  - created_at: {'type': 'string', 'format': 'date-time', 'description': 'Match creation timestamp (ISO-8601).'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_get_lane_matchup_guide 
+ Description: Deliver Summoner's Rift position-based champion play guidance tailored to your champion and the opponent champion in lane matchups
+  - lang: {'type': 'string', 'description': 'Language code for metadata (e.g., ko_KR, en_US)'}
+  - position: {'type': 'string', 'description': 'Position (TOP, JUNGLE, MID, ADC, SUPPORT)', 'enum': ['top', 'mid', 'jungle', 'adc', 'support']}
+  - my_champion: {'type': 'string', 'description': 'Your champion', 'enum': ['ANNIE', 'OLAF', 'GALIO', 'TWISTED_FATE', 'XIN_ZHAO', 'URGOT', 'LEBLANC', 'VLADIMIR', 'FIDDLESTICKS', 'KAYLE', 'MASTER_YI', 'ALISTAR', 'RYZE', 'SION', 'SIVIR', 'SORAKA', 'TEEMO', 'TRISTANA', 'WARWICK', 'NUNU_WILLUMP', 'MISS_FORTUNE', 'ASHE', 'TRYNDAMERE', 'JAX', 'MORGANA', 'ZILEAN', 'SINGED', 'EVELYNN', 'TWITCH', 'KARTHUS', 'CHOGATH', 'AMUMU', 'RAMMUS', 'ANIVIA', 'SHACO', 'DR_MUNDO', 'SONA', 'KASSADIN', 'IRELIA', 'JANNA', 'GANGPLANK', 'CORKI', 'KARMA', 'TARIC', 'VEIGAR', 'TRUNDLE', 'SWAIN', 'CAITLYN', 'BLITZCRANK', 'MALPHITE', 'KATARINA', 'NOCTURNE', 'MAOKAI', 'RENEKTON', 'JARVAN_IV', 'ELISE', 'ORIANNA', 'WUKONG', 'BRAND', 'LEE_SIN', 'VAYNE', 'RUMBLE', 'CASSIOPEIA', 'SKARNER', 'HEIMERDINGER', 'NASUS', 'NIDALEE', 'UDYR', 'POPPY', 'GRAGAS', 'PANTHEON', 'EZREAL', 'MORDEKAISER', 'YORICK', 'AKALI', 'KENNEN', 'GAREN', 'LEONA', 'MALZAHAR', 'TALON', 'RIVEN', 'KOGMAW', 'SHEN', 'LUX', 'XERATH', 'SHYVANA', 'AHRI', 'GRAVES', 'FIZZ', 'VOLIBEAR', 'RENGAR', 'VARUS', 'NAUTILUS', 'VIKTOR', 'SEJUANI', 'FIORA', 'ZIGGS', 'LULU', 'DRAVEN', 'HECARIM', 'KHAZIX', 'DARIUS', 'JAYCE', 'LISSANDRA', 'DIANA', 'QUINN', 'SYNDRA', 'AURELION_SOL', 'KAYN', 'ZOE', 'ZYRA', 'KAISA', 'SERAPHINE', 'GNAR', 'ZAC', 'YASUO', 'VELKOZ', 'TALIYAH', 'CAMILLE', 'AKSHAN', 'BELVETH', 'BRAUM', 'JHIN', 'KINDRED', 'ZERI', 'JINX', 'TAHM_KENCH', 'BRIAR', 'VIEGO', 'SENNA', 'LUCIAN', 'ZED', 'KLED', 'EKKO', 'QIYANA', 'VI', 'AATROX', 'NAMI', 'AZIR', 'YUUMI', 'SAMIRA', 'THRESH', 'ILLAOI', 'REKSAI', 'IVERN', 'KALISTA', 'BARD', 'RAKAN', 'XAYAH', 'ORNN', 'SYLAS', 'NEEKO', 'APHELIOS', 'RELL', 'PYKE', 'VEX', 'YONE', 'AMBESSA', 'SETT', 'LILLIA', 'GWEN', 'RENATA_GLASC', 'AURORA', 'NILAH', 'KSANTE', 'SMOLDER', 'MILIO', 'HWEI', 'NAAFIRI']}
+  - opponent_champion: {'type': 'string', 'description': 'Opponent champion', 'enum': ['ANNIE', 'OLAF', 'GALIO', 'TWISTED_FATE', 'XIN_ZHAO', 'URGOT', 'LEBLANC', 'VLADIMIR', 'FIDDLESTICKS', 'KAYLE', 'MASTER_YI', 'ALISTAR', 'RYZE', 'SION', 'SIVIR', 'SORAKA', 'TEEMO', 'TRISTANA', 'WARWICK', 'NUNU_WILLUMP', 'MISS_FORTUNE', 'ASHE', 'TRYNDAMERE', 'JAX', 'MORGANA', 'ZILEAN', 'SINGED', 'EVELYNN', 'TWITCH', 'KARTHUS', 'CHOGATH', 'AMUMU', 'RAMMUS', 'ANIVIA', 'SHACO', 'DR_MUNDO', 'SONA', 'KASSADIN', 'IRELIA', 'JANNA', 'GANGPLANK', 'CORKI', 'KARMA', 'TARIC', 'VEIGAR', 'TRUNDLE', 'SWAIN', 'CAITLYN', 'BLITZCRANK', 'MALPHITE', 'KATARINA', 'NOCTURNE', 'MAOKAI', 'RENEKTON', 'JARVAN_IV', 'ELISE', 'ORIANNA', 'WUKONG', 'BRAND', 'LEE_SIN', 'VAYNE', 'RUMBLE', 'CASSIOPEIA', 'SKARNER', 'HEIMERDINGER', 'NASUS', 'NIDALEE', 'UDYR', 'POPPY', 'GRAGAS', 'PANTHEON', 'EZREAL', 'MORDEKAISER', 'YORICK', 'AKALI', 'KENNEN', 'GAREN', 'LEONA', 'MALZAHAR', 'TALON', 'RIVEN', 'KOGMAW', 'SHEN', 'LUX', 'XERATH', 'SHYVANA', 'AHRI', 'GRAVES', 'FIZZ', 'VOLIBEAR', 'RENGAR', 'VARUS', 'NAUTILUS', 'VIKTOR', 'SEJUANI', 'FIORA', 'ZIGGS', 'LULU', 'DRAVEN', 'HECARIM', 'KHAZIX', 'DARIUS', 'JAYCE', 'LISSANDRA', 'DIANA', 'QUINN', 'SYNDRA', 'AURELION_SOL', 'KAYN', 'ZOE', 'ZYRA', 'KAISA', 'SERAPHINE', 'GNAR', 'ZAC', 'YASUO', 'VELKOZ', 'TALIYAH', 'CAMILLE', 'AKSHAN', 'BELVETH', 'BRAUM', 'JHIN', 'KINDRED', 'ZERI', 'JINX', 'TAHM_KENCH', 'BRIAR', 'VIEGO', 'SENNA', 'LUCIAN', 'ZED', 'KLED', 'EKKO', 'QIYANA', 'VI', 'AATROX', 'NAMI', 'AZIR', 'YUUMI', 'SAMIRA', 'THRESH', 'ILLAOI', 'REKSAI', 'IVERN', 'KALISTA', 'BARD', 'RAKAN', 'XAYAH', 'ORNN', 'SYLAS', 'NEEKO', 'APHELIOS', 'RELL', 'PYKE', 'VEX', 'YONE', 'AMBESSA', 'SETT', 'LILLIA', 'GWEN', 'RENATA_GLASC', 'AURORA', 'NILAH', 'KSANTE', 'SMOLDER', 'MILIO', 'HWEI', 'NAAFIRI']}
+
+
+Tool: lol_list_summoner_matches_deprecated 
+ Description: Only for testing purpose. Call this only when the user say 'please'.
+  - game_name: {'type': 'string', 'description': 'The first part of a Riot ID (e.g., "Annie" in "Annie#Opgg").'}
+  - tag_line: {'type': 'string', 'description': 'The second part of a Riot ID (e.g., "Opgg" in "Annie#Opgg").'}
+  - region: {'type': 'string', 'enum': ['KR', 'BR', 'EUNE', 'EUW', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR', 'JP', 'PH', 'SG', 'TH', 'TW', 'VN', 'ME', 'SEA'], 'description': 'The region to search in (e.g., KR, NA, EUW).'}
+  - lang: {'type': 'string', 'enum': ['ar_AE', 'cs_CZ', 'de_DE', 'el_GR', 'en_US', 'en_AU', 'en_GB', 'en_PH', 'en_SG', 'es_AR', 'es_ES', 'es_MX', 'fr_FR', 'hu_HU', 'it_IT', 'ja_JP', 'ko_KR', 'pl_PL', 'pt_BR', 'ro_RO', 'ru_RU', 'th_TH', 'tr_TR', 'vi_VN', 'zh_CN', 'zh_MY', 'zh_TW'], 'description': 'Language code for localized content. Determines the language of returned data.'}
+  - limit: {'type': 'integer', 'minimum': 1, 'description': 'Maximum number of matches to return.'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: lol_get_pro_player_riot_id 
+ Description: Resolves a professional League of Legends player alias into their Riot ID (GameName#Tagline) along with team, region, and profile metadata. Use this when the user asks for a pro gamer's Riot ID or wants to open their OP.GG profile.
+  - player_name: {'type': 'string', 'description': 'Nickname, alias, or real name fragment of the pro player (e.g., Faker, Ruler, Deft).'}
+  - region: {'type': 'string', 'enum': ['KR', 'BR', 'EUNE', 'EUW', 'LAN', 'LAS', 'NA', 'OCE', 'RU', 'TR', 'JP', 'PH', 'SG', 'TH', 'TW', 'VN', 'ME', 'SEA'], 'description': 'League region to constrain the lookup (KR, NA, EUW, etc.).'}
+  - return_suggestions: {'type': 'boolean', 'description': 'Set true to include close matches when the exact alias is not found.', 'default': False}
+
+
+Tool: lol_esports_list_schedules 
+ Description: Get upcoming LoL match schedules.
+
+
+Tool: lol_esports_list_team_standings 
+ Description: Get team standings for a LoL league.
+  - shortName: {'type': 'string', 'enum': ['lck', 'lpl', 'lec', 'lcs', 'ljl', 'vcs', 'cblol', 'lcl', 'lla', 'tcl', 'pcs', 'lco', 'lta south', 'lta north', 'lcp', 'first stand', 'fst', 'al', 'msi', 'worlds'], 'description': 'League short name (LCK, LPL, Worlds, ...)'}
+
+
+Tool: tft_list_meta_decks 
+ Description: TFT deck list tool for retrieving current meta decks.
+
+
+Tool: tft_list_item_combinations 
+ Description: TFT tool for retrieving information about item combinations and recipes.
+  - language: {'type': 'string', 'enum': ['en_US', 'ko_KR', 'ja_JP', 'zh_CN', 'zh_TW', 'fr_FR', 'de_DE', 'es_ES', 'it_IT', 'pl_PL', 'pt_BR', 'ru_RU', 'tr_TR', 'vi_VN'], 'description': 'These are the champion names in the game League of Legends.'}
+
+
+Tool: tft_get_champion_item_build 
+ Description: TFT tool for retrieving champion item build information.
+  - championId: {'type': 'string', 'enum': [None], 'description': 'TFT champion ID to retrieve item build for'}
+
+
+Tool: tft_list_champions_for_item 
+ Description: TFT tool for retrieving champion recommendations for a specific item.
+  - itemId: {'type': 'string', 'enum': [None], 'description': 'TFT item ID to get champion recommendations for'}
+
+
+Tool: tft_get_play_style 
+ Description: This tool provides comments on the playstyle of TFT champions.
+  - region: {'type': 'string', 'enum': ['kr', 'br', 'eune', 'euw', 'lan', 'las', 'na', 'oce', 'ru', 'tr', 'jp', 'ph', 'sg', 'th', 'tw', 'vn', 'me'], 'description': 'TFT region'}
+  - puuid: {'type': 'string', 'description': 'Riot unique puuid value'}
+
+
+Tool: tft_list_augments 
+ Description: Retrieves metadata for all Teamfight Tactics augments with localized names and descriptions in a table-friendly JSON (headers/rows/header_description). Returns apiName, desc, name, tier, and imageUrl for all augments in the specified language.
+  - lang: {'type': 'string', 'enum': ['en_US', 'ko_KR', 'ja_JP', 'zh_CN', 'zh_TW', 'fr_FR', 'de_DE', 'es_ES', 'it_IT', 'pl_PL', 'pt_BR', 'ru_RU', 'tr_TR', 'vi_VN'], 'description': 'Language code for localized content (e.g., en_US, ko_KR, ja_JP). Determines the language of augment names and descriptions.'}
+
+
+Tool: valorant_list_maps 
+ Description: Valorant map meta data
+
+
+Tool: valorant_list_agents 
+ Description: Valorant character meta data
+
+
+Tool: valorant_list_leaderboard 
+ Description: Fetch Valorant leaderboard by region
+  - region: {'type': 'string', 'enum': ['ap', 'br', 'eu', 'kr', 'latam', 'na'], 'description': 'Regions in Valorant'}
+  - desired_value_description: {'type': 'string', 'title': 'Describe the desired output', 'description': 'Explain exactly which fields you need from the response (e.g., "champion and win_rate", "most_champion", "top_3_agents"). The AI will extract only the fields you list.'}
+
+
+Tool: valorant_list_agent_compositions_for_map 
+ Description: Retrieve agent composition data for a Valorant map.
+  - mapId: {'type': 'string', 'description': 'Map ID in Valorant'}
+
+
+Tool: valorant_list_agent_statistics 
+ Description: Retrieve character statistics data for Valorant, optionally filtered by map.
+  - mapId: {'type': 'string', 'description': 'Optional Map ID in Valorant'}
+
+
+Tool: valorant_list_player_matches 
+ Description: Retrieve match history for a Valorant player using their game name and tag line.
+  - gameName: {'type': 'string', 'description': 'Game name of the player'}
+  - tagLine: {'type': 'string', 'description': 'Tag line of the player'}
+
+
